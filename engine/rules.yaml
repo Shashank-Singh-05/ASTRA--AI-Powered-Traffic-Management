@@ -93,17 +93,6 @@ rules:
     barricades: 1
     diversion: false
     reasoning: Vehicle breakdown during peak requires quick clearing and traffic guidance.
-- id: rule_default
-  priority: 99
-  conditions:
-  - field: risk_score
-    operator: '>='
-    value: 0
-  actions:
-    officers: 1
-    barricades: 0
-    diversion: false
-    reasoning: Standard event requires minimal observation.
 - id: rule_accident_minor
   priority: 8
   conditions:
@@ -118,3 +107,58 @@ rules:
     barricades: 2
     diversion: false
     reasoning: Minor accident requires basic traffic management and clearing.
+- id: rule_protest_rally
+  priority: 10
+  conditions:
+  - field: event_cause
+    operator: ==
+    value: protest
+  actions:
+    officers: 5
+    barricades: 6
+    diversion: true
+    reasoning: Protests and rallies require crowd control and route diversion.
+- id: rule_critical_risk_generic
+  priority: 50
+  conditions:
+  - field: risk_score
+    operator: '>'
+    value: 80
+  actions:
+    officers: 6
+    barricades: 4
+    diversion: true
+    reasoning: Critical risk score requires heavy resource deployment.
+- id: rule_high_risk_generic
+  priority: 51
+  conditions:
+  - field: risk_score
+    operator: '>'
+    value: 60
+  actions:
+    officers: 4
+    barricades: 2
+    diversion: false
+    reasoning: High risk score requires significant traffic management.
+- id: rule_medium_risk_generic
+  priority: 52
+  conditions:
+  - field: risk_score
+    operator: '>'
+    value: 35
+  actions:
+    officers: 2
+    barricades: 0
+    diversion: false
+    reasoning: Moderate risk score requires standard traffic guidance.
+- id: rule_default
+  priority: 99
+  conditions:
+  - field: risk_score
+    operator: '>='
+    value: 0
+  actions:
+    officers: 1
+    barricades: 0
+    diversion: false
+    reasoning: Standard event requires minimal observation.
