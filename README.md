@@ -1,10 +1,7 @@
-<div align="center">
-  <img src="traffic_light.ico" alt="ASTRA Logo" width="120" />
-  <h1>🚦 ASTRA</h1>
-  <p><strong>AI-Powered Traffic Intelligence & Incident Management Platform</strong></p>
-</div>
+# 🚦 ASTRA
+## AI-Powered Traffic Intelligence & Incident Management Platform
 
-<br />
+
 
 ASTRA is an advanced, enterprise-grade traffic management and incident response platform designed to predict, manage, and mitigate urban gridlock before it cascades. 
 
