@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+:root {
+  --primary: #2563eb;
+  --secondary: #4f46e5;
+  --background: #f8fafc;
+  --foreground: #0f172a;
+}
+
+@theme {
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+
+body {
+  margin: 0;
+  display: flex;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+#root {
+  width: 100%;
+}

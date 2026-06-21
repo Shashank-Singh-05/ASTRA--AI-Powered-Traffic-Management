@@ -1,0 +1,120 @@
+rules:
+- id: rule_vip_movement
+  priority: 1
+  conditions:
+  - field: event_cause
+    operator: ==
+    value: vip_movement
+  - field: risk_score
+    operator: '>'
+    value: 70
+  actions:
+    officers: 10
+    barricades: 6
+    diversion: true
+    reasoning: VIP movement with high risk requires maximum security and diversion.
+- id: rule_critical_risk_closure
+  priority: 2
+  conditions:
+  - field: risk_score
+    operator: '>'
+    value: 80
+  - field: requires_road_closure
+    operator: ==
+    value: true
+  actions:
+    officers: 8
+    barricades: 8
+    diversion: true
+    reasoning: Critical risk event with road closure requires extensive barricading
+      and diversion.
+- id: rule_high_risk_peak
+  priority: 3
+  conditions:
+  - field: risk_score
+    operator: '>'
+    value: 60
+  - field: is_peak_hour
+    operator: ==
+    value: true
+  actions:
+    officers: 6
+    barricades: 4
+    diversion: false
+    reasoning: High risk during peak hours requires heavy officer presence to manage
+      flow.
+- id: rule_accident_major
+  priority: 4
+  conditions:
+  - field: event_cause
+    operator: ==
+    value: accident
+  - field: risk_score
+    operator: '>'
+    value: 50
+  actions:
+    officers: 4
+    barricades: 2
+    diversion: false
+    reasoning: Major accident requires immediate response and securing the area.
+- id: rule_water_logging
+  priority: 5
+  conditions:
+  - field: event_cause
+    operator: ==
+    value: water_logging
+  actions:
+    officers: 2
+    barricades: 4
+    diversion: true
+    reasoning: Water logging requires barricades and diversion to avoid stuck vehicles.
+- id: rule_tree_fall
+  priority: 6
+  conditions:
+  - field: event_cause
+    operator: ==
+    value: tree_fall
+  actions:
+    officers: 3
+    barricades: 4
+    diversion: true
+    reasoning: Tree fall requires clearing crew, barricades, and diversion.
+- id: rule_breakdown_peak
+  priority: 7
+  conditions:
+  - field: event_cause
+    operator: ==
+    value: vehicle_breakdown
+  - field: is_peak_hour
+    operator: ==
+    value: true
+  actions:
+    officers: 2
+    barricades: 1
+    diversion: false
+    reasoning: Vehicle breakdown during peak requires quick clearing and traffic guidance.
+- id: rule_default
+  priority: 99
+  conditions:
+  - field: risk_score
+    operator: '>='
+    value: 0
+  actions:
+    officers: 1
+    barricades: 0
+    diversion: false
+    reasoning: Standard event requires minimal observation.
+- id: rule_accident_minor
+  priority: 8
+  conditions:
+  - field: event_cause
+    operator: ==
+    value: accident
+  - field: risk_score
+    operator: <=
+    value: 50
+  actions:
+    officers: 2
+    barricades: 2
+    diversion: false
+    reasoning: Minor accident requires basic traffic management and clearing.
